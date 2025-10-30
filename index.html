@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login — Neon Glass</title>
+  <style>
+    :root{
+      --bg1: #0f1724;
+      --bg2: #071127;
+      --glass: rgba(255,255,255,0.06);
+      --accent: #66f0ff;
+      --accent2: #9b66ff;
+      --text: #e6eef8;
+      --muted: #9fb4c9;
+      --shadow: 0 10px 30px rgba(2,6,23,0.6);
+    }
+
+    /* Page */
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial}
+    body{
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(155,102,255,0.12) 0%, transparent 8%),
+                  radial-gradient(900px 400px at 90% 90%, rgba(102,240,255,0.08) 0%, transparent 8%),
+                  linear-gradient(180deg,var(--bg1),var(--bg2));
+      color:var(--text);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
+    }
+
+    /* floating glowing shapes */
+    .glow {
+      position:fixed;
+      filter: blur(40px) opacity(.35);
+      pointer-events:none;
+      mix-blend-mode:screen;
+    }
+    .g1{width:420px;height:420px;left:-120px;top:-80px;background:linear-gradient(135deg,var(--accent),transparent)}
+    .g2{width:300px;height:300px;right:-80px;bottom:-60px;background:linear-gradient(45deg,var(--accent2),transparent)}
+
+    /* Card */
+    .card{
+      width:100%;
+      max-width:980px;
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:28px;
+      align-items:center;
+      padding:34px;
+      border-radius:18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(8px) saturate(120%);
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+
+    /* Left info panel */
+    .promo{
+      padding:24px 28px;
+    }
+    .logo{
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:18px;
+    }
+    .logo .dot{
+      width:44px;height:44px;border-radius:10px;
+      background: linear-gradient(135deg,var(--accent),var(--accent2));
+      box-shadow: 0 6px 18px rgba(102,240,255,0.08), inset 0 -6px 12px rgba(0,0,0,0.12);
+      display:flex;align-items:center;justify-content:center;font-weight:700;color:#032133;
+    }
+    h1{font-size:26px;margin:0 0 8px}
+    p.lead{color:var(--muted);line-height:1.5;margin:0 0 18px}
+
+    /* decorative stripes */
+    .features{display:flex;gap:12px;flex-wrap:wrap}
+    .chip{background:rgba(255,255,255,0.03);padding:10px 12px;border-radius:10px;font-size:13px;color:var(--muted)}
+
+    /* Form panel */
+    .form-wrap{
+      padding:22px;
+      border-radius:12px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+      border:1px solid rgba(255,255,255,0.03);
+    }
+
+    form{display:flex;flex-direction:column;gap:14px}
+    .field{
+      position:relative;
+    }
+    input[type="text"], input[type="password"]{
+      width:100%;
+      padding:16px 14px 14px 14px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.06);
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.03));
+      color:var(--text);
+      outline:none;
+      font-size:15px;
+      transition:box-shadow .18s, border-color .18s, transform .12s;
+    }
+    input::placeholder{color:transparent} /* we use floating labels */
+    input:focus{
+      box-shadow: 0 8px 28px rgba(102,240,255,0.06);
+      border-color: rgba(102,240,255,0.6);
+      transform: translateY(-1px);
+    }
+
+    /* floating label using placeholder-shown */
+    label.floating{
+      position:absolute;
+      left:14px;
+      top:12px;
+      padding:0 6px;
+      font-size:13px;
+      color:var(--muted);
+      pointer-events:none;
+      background:transparent;
+      transition: transform .18s ease, font-size .18s ease, top .18s ease, color .18s;
+    }
+    input:focus + label.floating,
+    input:not(:placeholder-shown) + label.floating {
+      transform: translateY(-32px);
+      font-size:12px;
+      color:var(--accent);
+      top:0px;
+    }
+
+    /* submit button */
+    .btn {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      background: linear-gradient(90deg,var(--accent),var(--accent2));
+      color:#042634;
+      border:none;
+      padding:12px 14px;
+      border-radius:10px;
+      font-weight:700;
+      cursor:pointer;
+      box-shadow: 0 8px 24px rgba(155,102,255,0.12);
+      transition: transform .12s ease, box-shadow .12s;
+    }
+    .btn:hover{transform:translateY(-3px); box-shadow: 0 18px 40px rgba(102,240,255,0.12)}
+
+    .meta-row{display:flex;align-items:center;justify-content:space-between;font-size:13px;color:var(--muted)}
+
+    .small{
+      font-size:12px;color:var(--muted)
+    }
+
+    /* responsive */
+    @media (max-width:880px){
+      .card{grid-template-columns:1fr; padding:22px}
+      .g1,.g2{display:none}
+    }
+  </style>
+</head>
+<body>
+  <!-- subtle glowing blobs -->
+  <div class="glow g1" aria-hidden="true"></div>
+  <div class="glow g2" aria-hidden="true"></div>
+
+  <main class="card" role="main" aria-labelledby="title">
+    <section class="promo" aria-hidden="false">
+      <div class="logo" aria-hidden="true">
+        <div class="dot">NL</div>
+        <div>
+          <div style="font-weight:700;">NeonLabs</div>
+          <div style="font-size:12px;color:var(--muted)">Creative UI Kit</div>
+        </div>
+      </div>
+
+      <h1 id="title">Welcome back</h1>
+      <p class="lead">Login to access your dashboard and visual projects. This page uses only HTML + CSS (no JS) — responsive and lightweight.</p>
+
+      <div class="features" aria-hidden="true">
+        <div class="chip">Glassmorphism</div>
+        <div class="chip">CSS animations</div>
+        <div class="chip">No JS</div>
+        <div class="chip">Responsive</div>
+      </div>
+
+      <div style="height:18px"></div>
+      <p class="small">Tip: try the page on mobile to see the stacked layout. Use a real back-end endpoint by changing the form <code>action</code>.</p>
+    </section>
+
+    <aside class="form-wrap" aria-label="login form">
+      <form action="#" method="post" autocomplete="on" novalidate>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+          <strong style="font-size:16px">Sign in</strong>
+          <span class="small">New here? <a href="#" style="color:var(--accent);text-decoration:none">Create account</a></span>
+        </div>
+
+        <div class="field">
+          <input id="email" type="text" name="email" placeholder=" " required aria-required="true" />
+          <label class="floating" for="email">Email or username</label>
+        </div>
+
+        <div class="field">
+          <input id="password" type="password" name="password" placeholder=" " required aria-required="true" />
+          <label class="floating" for="password">Password</label>
+        </div>
+
+        <div class="meta-row" style="margin-top:6px">
+          <label style="display:flex;gap:8px;align-items:center;color:var(--muted);font-size:13px">
+            <input type="checkbox" style="width:14px;height:14px;accent-color:var(--accent);border-radius:4px"/> Remember
+          </label>
+          <a href="#" style="color:var(--accent);text-decoration:none;font-weight:600;font-size:13px">Forgot?</a>
+        </div>
+
+        <div style="margin-top:8px">
+          <button class="btn" type="submit" aria-label="Sign in">
+            <!-- simple SVG icon inline -->
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2v11" stroke="#042634" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M5 12l7 7 7-7" stroke="#042634" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Sign In
+          </button>
+        </div>
+
+        <div style="margin-top:12px;text-align:center;color:var(--muted);font-size:13px">
+          Or continue with <strong style="color:var(--accent)">Magic Link</strong>
+        </div>
+      </form>
+    </aside>
+  </main>
+</body>
+</html>

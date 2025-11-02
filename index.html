@@ -223,34 +223,32 @@
     const successMsg = document.getElementById("successMsg");
 
     form.addEventListener("submit", (e) => {
-      e.preventDefault(); // cegah submit langsung
+      e.preventDefault(); 
 
       let valid = true;
 
-      // sembunyikan pesan error
+    
       emailError.style.display = "none";
       passwordError.style.display = "none";
       successMsg.style.display = "none";
 
-      // cek username
+      
       if (emailInput.value.trim() === "") {
         emailError.style.display = "block";
         valid = false;
       }
 
-      // cek password
+      
       if (passwordInput.value.trim() === "") {
         passwordError.style.display = "block";
         valid = false;
       }
 
-      // jika valid
       if (valid) {
         successMsg.style.display = "block";
 
-        // Simulasikan loading, lalu redirect
         setTimeout(() => {
-          window.location.href = "second.html"; // 👉 ganti dengan halaman tujuan kamu
+          window.location.href = "second.html"; 
         }, 2000);
       }
     });

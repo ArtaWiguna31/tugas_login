@@ -3,9 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login Berhasil</title>
 </head>
 <body>
-    <p>busdhflsdhnlkjsvbjfbfl</p>
+    <p>
+     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Berhasil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Animasi Masuk */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .fade-in {
+        animation: fadeInUp 0.8s ease-out forwards;
+      }
+    </style>
+  </head>
+
+  <body
+    class="min-h-screen bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 flex items-center justify-center p-4 sm:p-6 md:p-10"
+  >
+    <div
+      class="max-w-md w-full bg-white/20 backdrop-blur-lg rounded-2xl shadow-2xl p-6 sm:p-8 md:p-10 border border-white/30 fade-in"
+    >
+      <div class="flex flex-col items-center text-center gap-4 mb-6 sm:mb-8">
+        <div
+          class="w-16 h-16 rounded-full bg-white/30 flex items-center justify-center shadow-lg"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-8 h-8 text-white"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+          >
+            <path
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+        </div>
+        <h1 class="text-white text-3xl sm:text-4xl font-bold drop-shadow-md">
+          Login Berhasil!
+        </h1>
+        <p class="text-white/80 text-sm sm:text-base max-w-xs">
+          Selamat Kamu Bisa Internetan Sepuasnya
+        </p>
+      </div>
+
+      <div
+        class="bg-white/10 rounded-xl p-5 sm:p-6 text-center text-white space-y-3"
+      >
+    
+        <p class="text-white/80 text-sm sm:text-base">
+            Kamu Bisa Menakan "TikTok Saya" Untuk Mencoba Jaringganya
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-3 justify-center mt-4">
+          <!-- Tombol Ke TikTok -->
+          <a
+            href="https://www.tiktok.com/@arta_wg31?_r=1&_d=db7cbe9i8b4d98&sec_uid=MS4wLjABAAAA5rKLZyONWEP8p5vCw-kqES1NRgcKaGF_tRq-ym51MNJQXtGgJplVLU_rvBVGJspS&share_author_id=6790958856417559554&sharer_language=id&source=h5_t&u_code=dak6jbk8ej7d73&item_author_type=1&utm_source=copy&tt_from=copy&enable_checksum=1&utm_medium=ios&share_link_id=39E178DB-5D23-4ACA-80FB-C2C20125070A&user_id=6790958856417559554&sec_user_id=MS4wLjABAAAA5rKLZyONWEP8p5vCw-kqES1NRgcKaGF_tRq-ym51MNJQXtGgJplVLU_rvBVGJspS&social_share_type=4&ug_btm=b8727,b0&utm_campaign=client_share&share_app_id=1180"
+            target="_blank"
+            class="px-5 py-3 bg-white text-indigo-700 font-semibold rounded-lg shadow hover:scale-105 transform transition"
+          >
+          TikTok Saya
+        </a>
+
+          <!-- Tombol kembali -->
+          <button
+            onclick="window.history.back()"
+            class="px-5 py-3 border border-white/40 text-white rounded-lg hover:bg-white/10 transition"
+          >
+            Keluar
+          </button>
+        </div>
+      </div>
+
+      <footer
+        class="mt-8 text-xs sm:text-sm text-white/70 flex flex-col sm:flex-row items-center justify-between gap-2"
+      >
+        <span>© <script>document.write(new Date().getFullYear())</script> Konsepweb</span>
+        <span>@arta_wiguna31</span>
+      </footer>
+    </div>
+
+    <div
+      class="pointer-events-none fixed bottom-6 right-6 opacity-30 select-none hidden sm:block"
+    >
+      <svg
+        width="120"
+        height="120"
+        viewBox="0 0 100 100"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <linearGradient id="g" x1="0" x2="1">
+            <stop offset="0%" stop-color="#fff" stop-opacity="0.25" />
+            <stop offset="100%" stop-color="#fff" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+        <circle cx="50" cy="50" r="40" fill="url(#g)" />
+      </svg>
+    </div>
+    </p>
 </body>
 </html>
